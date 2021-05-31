@@ -23,6 +23,6 @@ get_date(){
 
 # 轮询刷新
 while true; do
-	xsetroot -name "cpu:$(get_cpu)，mem:$(get_memory)，time:$(get_date)，volume:$(get_volume)"
+	xsetroot -name "cpu:$(get_cpu) | mem:$(get_memory) | volume:$(get_volume) | $(get_date)"
 	sleep 1s
 done
