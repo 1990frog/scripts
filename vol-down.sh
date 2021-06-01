@@ -1,3 +1,3 @@
 #!/bin/bash
 
-/usr/bin/amixer -qM set PCM 1%- umute
+/usr/bin/amixer -qM set Master 1%- umute

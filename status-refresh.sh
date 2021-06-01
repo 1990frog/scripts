@@ -2,7 +2,7 @@
 
 # 声音
 get_volume() {
-	volume="$(amixer get PCM | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')"
+	volume="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')"
 	echo -e "${volume}%"
 }
 
@@ -13,7 +13,8 @@ get_cpu(){
 
 # 内存
 get_memory(){
-	echo -e `free --mebi | sed -n '2{p;q}' | awk '{printf ("%2.2fGiB/%2.2fGiB(%.2f%)\n", ( $3 / 1024), ($2 / 1024), ($3/$2*100))}'`
+	# echo -e `free --mebi | sed -n '2{p;q}' | awk '{printf ("%2.2fGiB/%2.2fGiB(%.2f%)\n", ( $3 / 1024), ($2 / 1024), ($3/$2*100))}'`
+	echo -e `free --mebi | sed -n '2{p;q}' | awk '{printf ("%2.2fGiB(%.2f%)\n", ( $3 / 1024), ($3/$2*100))}'`
 }
 
 # 日期
@@ -24,5 +25,5 @@ get_date(){
 # 轮询刷新
 while true; do
 	xsetroot -name "cpu:$(get_cpu) | mem:$(get_memory) | volume:$(get_volume) | $(get_date)"
-	sleep 1s
+	sleep 0.5s
 done
